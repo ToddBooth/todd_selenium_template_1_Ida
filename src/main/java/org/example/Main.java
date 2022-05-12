@@ -7,7 +7,7 @@ import java.time.Duration;
 
 public class Main {
     public static void main(String[] args) throws InterruptedException {
-        System.out.println("Hello World.");
+        System.out.println("Hello Selenium World.");
 
         // Chrome
         System.setProperty("webdriver.chrome.driver", "./drivers/chromedriver_v101.exe");
@@ -37,5 +37,7 @@ public class Main {
 
         String company = "Company";
         driver.findElement(By.id(company)).sendKeys("Luleå University of Technology");
+
+        driver.close();
     }
 }
