@@ -26,18 +26,22 @@ public class Main {
 
         Thread.sleep(300);
 
-        String first_name = "First Name";
+        // First Name
         driver.findElement(By.xpath("/html//input[@id='First Name']")).sendKeys("Todd");
 
-        String last_name = "Last Name";
-        driver.findElement(By.id(last_name)).sendKeys("Booth");
+        // Last Name
+        driver.findElement(By.id("Last Name")).sendKeys("Booth");
 
-        String email = "Email";
-        driver.findElement(By.id(email)).sendKeys("SomeEmail@Gmail.Com");
+        // Email
+        driver.findElement(By.cssSelector("input#Email")).sendKeys("SomeEmail@Gmail.Com");
 
-        String company = "Company";
-        driver.findElement(By.id(company)).sendKeys("Luleå University of Technology");
+        // Company
+        driver.findElement(By.id("Company")).sendKeys("Luleå University of Technology");
 
+        // Submit button
+        driver.findElement(By.xpath("/html//a[@id='confirm-button']")).click();
+
+        // Clean up manually
         driver.close();
     }
 }
