@@ -1,1 +1,1 @@
-# template_1
+# Teacher Todd's selenium template repository
