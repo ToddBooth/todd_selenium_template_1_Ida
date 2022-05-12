@@ -42,6 +42,7 @@ public class Main {
         driver.findElement(By.xpath("/html//a[@id='confirm-button']")).click();
 
         // Clean up manually
+        driver.manage().deleteAllCookies();
         driver.close();
     }
 }
