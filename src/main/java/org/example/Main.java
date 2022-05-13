@@ -1,6 +1,8 @@
 package org.example;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -17,52 +19,46 @@ public class Main {
 
         // Chrome
         System.setProperty(DRIVER_TYPE, DRIVER_FILE);
-        ChromeDriver driver = new ChromeDriver();
-        DesiredCapabilities capabilities = DesiredCapabilities.chrome();
         ChromeOptions options = new ChromeOptions();
         options.addArguments("incognito");
-        capabilities.setCapability(ChromeOptions.CAPABILITY, options);
+        options.addArguments("start-maximized");
+        ChromeDriver driver = new ChromeDriver(options);
 
         // Maximizes window to show the full content (the "Try for free" button)
-        driver.manage().window().maximize();
+        // driver.manage().window().maximize();
 
         driver.get("https://yahoo.com");
         System.out.println(driver.getTitle());
+        driver.manage().deleteAllCookies();
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
+        Thread.sleep(200);
         driver.findElement(By.xpath("/html//div[@id='consent-page']/div/div//form//button[@name='agree']")).click();
 
-        wait = new WebDriverWait(driver, Duration.ofSeconds(2));
-        driver.findElement(By.xpath("//html[@id='atomic']//a[@id='ybarMailLink']/span[@class='_yb_17wuk _yb_1w8fz']")).click();
+        Thread.sleep(200);
+        String xpath = "//div[@innertext='Logga in']";
+        // driver.findElement(By.xpath(xpath)).click();
+        String css = "._yb_trcuk";
+        driver.findElement(By.cssSelector(css)).click();
 
-        wait = new WebDriverWait(driver, Duration.ofSeconds(2));
-        driver.findElement(By.xpath("//html[@id='Stencil']//a[@id='createacc']")).click();
+        Thread.sleep(200);
+        xpath = "//html[@id='Stencil']//a[@id='createacc']";
+        driver.findElement(By.xpath(xpath)).click();
 
-        wait = new WebDriverWait(driver, Duration.ofSeconds(2));
-        driver.findElement(By.xpath("//html[@id='Stencil']//input[@id='login-username']")).sendKeys("hejsan@yahoo.com");
+        Thread.sleep(200);
+        xpath = "//html[@id='Stencil']//input[@id='usernamereg-firstName']";
+        driver.findElement(By.xpath(xpath)).sendKeys("John");
 
-        wait = new WebDriverWait(driver, Duration.ofSeconds(2));
-        String text = "Try Free";
-        driver.findElement(By.linkText(text)).click();
+        Thread.sleep(200);
+        xpath = "//html[@id='Stencil']//input[@id='usernamereg-lastName']";
+        driver.findElement(By.xpath(xpath)).sendKeys("Doe" +
+            Keys.TAB + "hejsan2477" +
+            Keys.TAB + "password123" +
+            Keys.TAB + "1998");
 
-        Thread.sleep(300);
-
-        // First Name
-        driver.findElement(By.xpath("/html//input[@id='First Name']")).sendKeys("Todd");
-
-        // Last Name
-        String LAST_NAME = "Last Name";
-        driver.findElement(By.id(LAST_NAME)).sendKeys("Booth");
-
-        // Email
-        driver.findElement(By.cssSelector("input#Email")).sendKeys("SomeEmail@Gmail.Com");
-
-        // Company
-        String COMPANY = "Company";
-        driver.findElement(By.id(COMPANY)).sendKeys("Luleå University of Technology");
-
-        // Submit button
-        driver.findElement(By.xpath("/html//a[@id='confirm-button']")).click();
+        Thread.sleep(200);
+        xpath = "//html[@id='Stencil']//button[@id='reg-submit-button']";
+        // I disabled the following so that I don't actually create a Yahoo account
+        // driver.findElement(By.xpath(xpath)).click();
 
         // Clean up manually
         driver.manage().deleteAllCookies();
