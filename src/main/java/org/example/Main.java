@@ -10,7 +10,6 @@ import java.time.Duration;
 public class Main {
 
     static String DRIVER_TYPE = "webdriver.chrome.driver";
-
     static String DRIVER_FILE = "./drivers/chromedriver_v101.exe";
 
     public static void main(String[] args) throws InterruptedException {
