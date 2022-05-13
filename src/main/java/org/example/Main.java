@@ -37,7 +37,7 @@ public class Main {
         // driver.findElement(By.xpath(xpath)).click();
         String css = "._yb_trcuk";
         driver.findElement(By.cssSelector(css)).click();
-
+        
         Thread.sleep(200);
         xpath = "//html[@id='Stencil']//a[@id='createacc']";
         driver.findElement(By.xpath(xpath)).click();
