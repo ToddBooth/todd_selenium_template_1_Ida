@@ -11,8 +11,8 @@ import java.time.Duration;
 
 public class Main {
 
-    static String DRIVER_TYPE = "webdriver.chrome.driver";
-    static String DRIVER_FILE = "./drivers/chromedriver_v101.exe";
+    static final String DRIVER_TYPE = "webdriver.chrome.driver";
+    static final String DRIVER_FILE = "./drivers/chromedriver_v101.exe";
 
     public static void main(String[] args) throws InterruptedException {
         System.out.println("Hello Selenium World.");
@@ -23,9 +23,9 @@ public class Main {
         options.addArguments("incognito");
         options.addArguments("start-maximized");
         ChromeDriver driver = new ChromeDriver(options);
-        driver.manage().deleteAllCookies();
 
         driver.get("https://yahoo.com");
+        driver.manage().deleteAllCookies();
         System.out.println(driver.getTitle());
 
         Thread.sleep(200);
@@ -37,7 +37,7 @@ public class Main {
         // driver.findElement(By.xpath(xpath)).click();
         String css = "._yb_trcuk";
         driver.findElement(By.cssSelector(css)).click();
-        
+
         Thread.sleep(200);
         xpath = "//html[@id='Stencil']//a[@id='createacc']";
         driver.findElement(By.xpath(xpath)).click();
